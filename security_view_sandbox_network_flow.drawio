@@ -1,0 +1,131 @@
+<mxfile host="Electron" agent="claude-code">
+  <diagram name="Sandbox Network Flow" id="sandbox-network-flow">
+    <mxGraphModel dx="4680" dy="1965" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2220" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A7-NpqMjTNAv6k0-fCJJ-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;opacity=50;dashed=1;" value="&lt;b&gt;Microsoft Entra ID&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Browser (to Access App): Oauth 2.0 / OIDC Sign-In&lt;br&gt;CLI / Scripts / Terraform (to build agent, deploy agent, start/stop app): az login --&amp;gt; entra access token&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="280" x="250" y="-86" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;align=left;fontStyle=1;fontSize=20;" value="DELPHI Sandbox Network Flow (no corporate network)" vertex="1">
+          <mxGeometry height="30" width="900" y="-170" as="geometry" />
+        </mxCell>
+        <mxCell id="hIn" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#333333;" value="INBOUND" vertex="1">
+          <mxGeometry height="24" width="1180" x="180" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="hOut" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#333333;" value="OUTBOUND" vertex="1">
+          <mxGeometry height="24" width="670" x="1690" y="-96" as="geometry" />
+        </mxCell>
+        <mxCell id="laptop" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;Developer laptop (macOS)&lt;/b&gt;&lt;br&gt;Home ISP, no corporate network / VPN&lt;br&gt;Public IP &lt;font face=&quot;Courier New&quot;&gt;67.176.127.141&lt;/font&gt; (2026-10-01, can change)&lt;br&gt;&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Azure VPN Client&lt;/b&gt; (optional path)&lt;br&gt;P2S, OpenVPN + Entra ID&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;admin@VerticalRelevanceLabs&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="600" width="250" x="-21" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="s2a" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;#2a Context-based ingress&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;databricks_account_network_policy&lt;/font&gt; (ingress block)&lt;br&gt;allow &lt;font face=&quot;Courier New&quot;&gt;67.176.127.141/32&lt;/font&gt; →&lt;br&gt;workspace_ui, workspace_api, apps_runtime&lt;br&gt;bound by &lt;font face=&quot;Courier New&quot;&gt;databricks_workspace_network_option&lt;/font&gt;&lt;br&gt;&lt;i&gt;Public access stays Enabled&lt;/i&gt;" vertex="1">
+          <mxGeometry height="130" width="320" x="560" y="-46" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;#7 VPN gateway&lt;/b&gt; &lt;i&gt;(proposed)&lt;/i&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;azurerm_virtual_network_gateway&lt;/font&gt;&lt;br&gt;SKU &lt;font face=&quot;Courier New&quot;&gt;VpnGw1AZ&lt;/font&gt; (~$0.21/h), P2S&lt;br&gt;+ &lt;font face=&quot;Courier New&quot;&gt;azurerm_public_ip&lt;/font&gt; (Standard)&lt;br&gt;in &lt;font face=&quot;Courier New&quot;&gt;GatewaySubnet&lt;/font&gt; (/27)" vertex="1">
+          <mxGeometry height="130" width="260" x="400" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbe6;strokeColor=#d6b656;dashed=1;fontSize=12;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;" value="#1 Sandbox VNet &lt;i&gt;(proposed)&lt;/i&gt; — &lt;font face=&quot;Courier New&quot;&gt;azurerm_virtual_network&lt;/font&gt; in &lt;font face=&quot;Courier New&quot;&gt;delphi-azure-poc-rg&lt;/font&gt; (East US)&lt;br&gt;&lt;span style=&quot;font-weight:normal&quot;&gt;host + container subnets delegated to &lt;font face=&quot;Courier New&quot;&gt;Microsoft.Databricks/workspaces&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="340" width="400" x="730" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="dns" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;Private DNS (part of #2b)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;azurerm_private_dns_resolver&lt;/font&gt; + inbound endpoint&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;azurerm_private_dns_zone&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;privatelink.azuredatabricks.net&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="360" x="750" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="s2b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;#2b Private endpoints&lt;/b&gt; (complete private isolation)&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;azurerm_private_endpoint&lt;/font&gt;&lt;br&gt;• &lt;font face=&quot;Courier New&quot;&gt;databricks_ui_api&lt;/font&gt; → &lt;font face=&quot;Courier New&quot;&gt;delphi-azure-poc-dbx&lt;/font&gt; (front-end + back-end)&lt;br&gt;• &lt;font face=&quot;Courier New&quot;&gt;browser_authentication&lt;/font&gt; (SSO)&lt;br&gt;Workspace: &lt;font face=&quot;Courier New&quot;&gt;public_network_access_enabled = false&lt;/font&gt;&lt;br&gt;NSG rules: &lt;font face=&quot;Courier New&quot;&gt;NoAzureDatabricksRules&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="360" x="750" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="delphi" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;" value="DELPHI — Databricks workspace &lt;font face=&quot;Courier New&quot;&gt;delphi-azure-poc-dbx&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;font-weight:normal&quot;&gt;&lt;font face=&quot;Courier New&quot;&gt;adb-7405615096785532.12&lt;/font&gt; · Premium · serverless&lt;/span&gt;" vertex="1">
+          <mxGeometry height="785" width="300" x="1293" y="-155" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;Agent (Model Serving endpoint)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;agents_delphi_azure_poc_dbx_&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;7405615096785532-default-delphi_age&lt;/font&gt;&lt;br&gt;created by &lt;font face=&quot;Courier New&quot;&gt;agents.deploy()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="270" x="1308" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;App (Databricks Apps)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;delphi-ui-azure-skeleton&lt;/font&gt;&lt;br&gt;(src/delphi_ui)" vertex="1">
+          <mxGeometry height="80" width="270" x="1308" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="wsnote" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=11;" value="Catalog &lt;font face=&quot;Courier New&quot;&gt;delphi_azure_poc_dbx_7405615096785532&lt;/font&gt; + volume &lt;font face=&quot;Courier New&quot;&gt;delphi_data&lt;/font&gt; in storage &lt;font face=&quot;Courier New&quot;&gt;dbstorage2ydudagmw52fk&lt;/font&gt; (implicitly allowed by #3)" vertex="1">
+          <mxGeometry height="80" width="270" x="1308" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;#3 Serverless egress policy&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;databricks_account_network_policy&lt;/font&gt; (egress block)&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;RESTRICTED_ACCESS&lt;/font&gt; · &lt;font face=&quot;Courier New&quot;&gt;DRY_RUN&lt;/font&gt; → &lt;font face=&quot;Courier New&quot;&gt;ENFORCED&lt;/font&gt;&lt;br&gt;&lt;i&gt;same resource as #2a&lt;/i&gt;" vertex="1">
+          <mxGeometry height="110" width="320" x="1750" y="-46" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;fontColor=#555555;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;#4 NCC&lt;/b&gt; &lt;i&gt;(Terraform only, not applied)&lt;/i&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;databricks_mws_network_connectivity_config&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;databricks_mws_ncc_binding&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;databricks_mws_ncc_private_endpoint_rule&lt;/font&gt; × 0" vertex="1">
+          <mxGeometry height="110" width="330" x="1659" y="396.95" as="geometry" />
+        </mxCell>
+        <mxCell id="dest3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;Allowed internet destinations&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;pypi.org&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;files.pythonhosted.org&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;*.databricksapps.com&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="210" x="2150" y="-46" as="geometry" />
+        </mxCell>
+        <mxCell id="dest4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#777777;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="&lt;b&gt;Private Azure resources&lt;/b&gt;&lt;br&gt;none yet&lt;br&gt;(future SMBC storage / DB)" vertex="1">
+          <mxGeometry height="90" width="210" x="2059" y="406.95" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="laptop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;exitX=1;exitY=0.15;entryX=0;entryY=0.5;" target="s2a" value="public internet (HTTPS)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="s2a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.003;entryY=0.219;entryDx=0;entryDy=0;entryPerimeter=0;" target="delphi" value="allowed: home IP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="laptop" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#b8860b;fontColor=#8a6d00;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" target="s7" value="P2S tunnel (OpenVPN, Entra ID)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="s7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#b8860b;fontColor=#8a6d00;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" target="s2b" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="477.43" />
+              <mxPoint x="690" y="557.57" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A7-NpqMjTNAv6k0-fCJJ-3" connectable="0" parent="e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Private Link&lt;div&gt;(Microsoft Backbone)&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0663" y="2" as="geometry">
+            <mxPoint x="-17" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="dns" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#b8860b;fontColor=#8a6d00;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="s2b" value="resolves workspace URL → private IP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="s2b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#b8860b;fontColor=#8a6d00;exitX=1;exitY=0.5;entryX=0.003;entryY=0.582;exitDx=0;exitDy=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="delphi" value="Private Link (Microsoft backbone)">
+          <mxGeometry relative="1" x="0.0098" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1190" y="557.6" />
+              <mxPoint x="1190" y="301.8" />
+            </Array>
+            <mxPoint x="1179" y="557.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="delphi" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.997;exitY=0.208;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="s3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1673" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="dest3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="delphi" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#999999;fontColor=#777777;exitX=0.997;exitY=0.776;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="s4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1593" y="395.00000000000017" as="sourcePoint" />
+            <mxPoint x="1673" y="451.95" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=10;labelBackgroundColor=#ffffff;dashed=1;strokeColor=#999999;fontColor=#777777;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="dest4" value="no targets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legT" parent="1" style="text;html=1;fontStyle=1;fontSize=12;" value="Legend" vertex="1">
+          <mxGeometry height="20" width="100" x="20" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="leg0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="Doesn&#39;t Exist -- Restricts Public Connectivity" vertex="1">
+          <mxGeometry height="36" width="310" x="20" y="685" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="Doesn&#39;t Exist -- Enables Private Connectivity" vertex="1">
+          <mxGeometry height="36" width="310" x="350" y="685" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;fontColor=#555555;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="Write Terraform only — nothing to connect to yet" vertex="1">
+          <mxGeometry height="36" width="310" x="680" y="685" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;spacingRight=6;verticalAlign=top;spacingTop=4;" value="Existing resource (deployed today)" vertex="1">
+          <mxGeometry height="36" width="310" x="1010" y="685" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
